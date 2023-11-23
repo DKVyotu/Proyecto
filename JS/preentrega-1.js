@@ -20,6 +20,8 @@ console.log(`Bienvenido ${nombreCliente}`);
 
 console.log(`Tu edad es ${edadCliente}`);
 
+alert(`Bienvenido ${nombreCliente} tu edad es ${edadCliente}, ahora selecciona tu vehiculo.`);
+
 // Pide Informacion del carro
 
 let marca
