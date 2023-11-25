@@ -55,9 +55,8 @@ switch (marca) {
         break;
 }
 
-
-function alertaModelo(marca, modelo) {
-    alert(`Tu auto es un: ${marca} ${modelo}`)
+const alertaModelo = (marca, modelo) => {
+    alert(`Tu auto es un: ${marca} ${modelo}`);
 }
 
 function pideanio() {
