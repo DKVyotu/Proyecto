@@ -4,11 +4,11 @@ let edadCliente
 
 let nombreCliente
 
-edadCliente = prompt("Ingresa tu edad para poder continuar");
+edadCliente = parseInt(prompt("Ingresa tu edad para poder continuar"));
 
-while (edadCliente <= 17) {
-    edadCliente = prompt("La edad minima necesaria para ingresar es 18");
-}
+while (isNaN(edadCliente) || edadCliente <= 17) {
+    edadCliente = parseInt(prompt("La edad minima necesaria para ingresar es 18"));
+}   
 
 nombreCliente = prompt("Ingresa tu nombre")
 
@@ -30,10 +30,11 @@ let modelo
 
 let anioCarro 
 
-marca = parseInt(prompt("Selecciona una marca: \n1. Ford \n2. Chevrolet \n3. Doodge"))
+// Seleccion de Marca
+marca = parseInt(prompt("Selecciona una marca: \n1. Ford \n2. Chevrolet \n3. Dodge"))
 
 while (isNaN(marca) || marca < 1 || marca > 3) {
-    marca = parseInt(prompt("Porfavor selecciona una marca: \n1. Ford \n2. Chevrolet \n3. Doodge"))
+    marca = parseInt(prompt("Porfavor selecciona una marca: \n1. Ford \n2. Chevrolet \n3. Dodge"))
 }
 
 function alertaMarca(marca) {
@@ -50,7 +51,7 @@ switch (marca) {
         alertaMarca(marca);
         break;
     case 3:
-        marca = "Doodge";
+        marca = "Dodge";
         alertaMarca(marca);
         break;
 }
@@ -108,7 +109,7 @@ if (marca === "Chevrolet") {
     }
 }
 
-if (marca === "Doodge") {
+if (marca === "Dodge") {
     modelo = parseInt(prompt(`Selecciona tu modelo de ${marca}: \n1. Durango \n2. Charger \n3. Challenger`))
 
     while (isNaN(modelo) || modelo < 1 || modelo > 3) {
@@ -134,4 +135,3 @@ pideanio();
 
 
 console.log(`Tu carro es un: ${marca} ${modelo} ${anioCarro}`);
-

@@ -1,187 +1,138 @@
+// Pedir infoacion del Cliente
 
-let npcname= "";
-let hp_npc=15;
-let atk_npc;
-let agil_npc;
-let arm_equip= "";
-let hp_zombie;
-let agil_zombie;
-let atk_zombie;
+let edadCliente
 
-function game_start () {
-    npcname=prompt("Ingresa tu nombre, NPC:");
-    alert("Un gusto saludarte, "+ npcname+". ");
+let nombreCliente
+
+edadCliente = parseInt(prompt("Ingresa tu edad para poder continuar"));
+
+while (isNaN(edadCliente) || edadCliente <= 17) {
+    edadCliente = parseInt(prompt("La edad minima necesaria para ingresar es 18"));
+}   
+
+nombreCliente = prompt("Ingresa tu nombre")
+
+while (nombreCliente == "") {
+    nombreCliente = prompt("Ingresa tu nombre para continuar")
 }
 
-function setup_npc (){
-    let setup_choice;
-    alert("Elige un arma para prepararte contra el ataque de los zombies.");
-    setup_choice = prompt("Elige una acción:   \nA: Tomar la escopeta    \nB: Tomar el hacha    \nC: Usar los puños").toUpperCase();
+console.log(`Bienvenido ${nombreCliente} y tu edad es ${edadCliente}`);
+
+alert(`Bienvenido ${nombreCliente} tu edad es ${edadCliente}, ahora selecciona tu vehiculo.`);
+
+// Pide Informacion del carro
+
+let marca
+
+let modelo
+
+let anioCarro 
+
+function alertaMarca(marca) {
+    alert(`La marca seleccionada es ${marca}`)
+}
+const alertaModelo = (marca, modelo) => {
+    alert(`Tu auto es un: ${marca} ${modelo}`);
+}
+
+function pideAnio() {
+    anioCarro = parseInt(prompt("Ingresa el año de tu carro"))
     
-     switch (setup_choice){
-        case "A":
-            alert("Tomaste la escopeta, genial. Ahora, salgamos de esta cabaña, ¡ya nos toca entrar a escena!");
-            atk_npc=7;
-            agil_npc=3;
-            arm_equip="escopeta";
+    while (isNaN(anioCarro) || anioCarro < 1950 || anioCarro > 2025 ) {
+        anioCarro = parseInt(prompt("Ingresa un año valido de tu carro"))
+    }
+    alert(`Tu carro es un: ${marca} ${modelo} ${anioCarro}`)
+}
+let marca1 = ["Ford",["Escape","Explorer","Mustang"]];
+let marca2 = ["Chevrolet",["Spark","Tahoe","Camaro"]];
+let marca3 = ["Dodge",["Durango","Charger","Challenger"]];
+
+
+// Seleccion de Marca
+marca = parseInt(prompt(`Selecciona una marca: \n1. ${marca1[0]} \n2. ${marca2[0]} \n3. ${marca3[0]}`))
+
+while (isNaN(marca) || marca < 1 || marca > 3) {
+    marca = parseInt(prompt(`Porfavor selecciona una marca: \n1. ${marca1[0]} \n2. ${marca2[0]} \n3. ${marca3[0]}`))
+}
+
+switch (marca) {
+    case 1:
+        marca = marca1[0];
+        alertaMarca(marca1[0]);
         break;
-        case "B":
-            alert("Tomaste el hacha, genial. Ahora, salgamos de esta cabaña, ¡ya nos toca entrar a escena!");
-            atk_npc=5;
-            agil_npc=2;
-            arm_equip="hacha";
+    case 2:
+        marca = marca2[0];
+        alertaMarca(marca2[0]);
         break;
-        case "C":
-            alert("Prefiste usar los puños para ser más veloz, genial. Ahora, salgamos de esta cabaña, ¡ya nos toca entrar a escena!");
-            atk_npc=2;
-            agil_npc=10;
-            arm_equip="puño";
+    case 3:
+        marca = marca3[0];
+        alertaMarca(marca3[0]);
         break;
-        default:
-            alert("Esa no es una opción válida. ¿Te encuentras bien?");
-            setup_npc();
-        break;
-    }
-    alert("Comenzó la escena. Las calles están repletas de zombies. Solo tienes que avanzar en dirección norte y pelear contra el primer zombie con el que hagas colisión. Así te han programado, "+npcname+", para morir a pocos segundos de despertar.");
-    return arm_equip;
 }
 
-function generate_enemy(){
-    hp_zombie=20;
-    agil_zombie=12;
-    atk_zombie=5;
-}
+if (marca === marca1[0]) {
+    modelo = parseInt(prompt(`Selecciona tu modelo de ${marca1[0]}: \n1. ${marca1[1][0]} \n2. ${marca1[1][1]} \n3. ${marca1[1][2]}`))
 
-function battle(){
-    alert("¡Ha aparecido un zombie salvaje!")
-    let battle_choice;
-    //este codigo es para ver el estado de la batalla en consola
-        while(hp_zombie>0 && hp_npc>0 && agil_zombie>0){
-            
-        battle_menu();
+    while (isNaN(modelo) || modelo < 1 || modelo > 3) {
+        modelo = parseInt(prompt(`Porfavor selecciona tu modelo de ${marca1[0]}: \n1. ${marca1[1][0]} \n2. ${marca1[1][1]} \n3. ${marca1[1][2]}`))
     }
-    
-}
 
-function battle_attack (){
-    alert("¡"+npcname+" usa su "+arm_equip+" para atacar!");
-    hp_zombie=hp_zombie-atk_npc;
-    if(hp_zombie>0){
-        battle_receive_damage();
-    }
-    else{
-    alert("¡Zombie ha muerto!");
-    npc_killer_end();
+    switch (modelo) {
+        case 1:
+            modelo = marca1[1][0]; 
+            break;
+        case 2:
+            modelo = marca1[1][1];
+            break;
+        case 3:
+            modelo = marca1[1][2];
+            break;
     }
 }
 
-function battle_receive_damage (){
-    switch(battle_choice){
-    case "A":
-    alert("Un buen golpe, pero no lo ha matado!. Zombie se reincorpora y contraataca a "+npcname+"!");
-    break;
-    case "B":
-    alert("¡Zombie ha interceptado a "+npcname+" y le ha mordido!");
-    break;
-    default:
-    break;
+if (marca === marca2[0]) {
+    modelo = parseInt(prompt(`Selecciona tu modelo de ${marca2[0]}: \n1. ${marca2[1][0]} \n2. ${marca2[1][1]} \n3. ${marca2[1][2]}`))
+
+    while (isNaN(modelo) || modelo < 1 || modelo > 3) {
+        modelo = parseInt(prompt(`Porfavor selecciona tu modelo de ${marca2[0]}: \n1. ${marca2[1][0]} \n2. ${marca2[1][1]} \n3. ${marca2[1][2]}`))
     }
-    hp_npc=hp_npc-atk_zombie;
-    if (hp_npc >0){
-        alert("¡"+npcname+" sigue vivo!")
-        battle_debug();
-    }else{
-        alert("¡"+npcname+" ha sido descuartizado por zombie!")
-        battle_debug();
-        npc_death_end();
+
+    switch (modelo) {
+        case 1:
+            modelo = marca2[1][0];
+            break;
+        case 2:
+            modelo = marca2[1][1];
+            break;
+        case 3:
+            modelo = marca2[1][2];
+            break;
     }
 }
 
-function battle_escape (){
-    alert("¡"+npcname+" se rueda por debajo de las piernas de zombie con la intención de escapar!");
-    agil_zombie=agil_zombie-agil_npc;
-    if(agil_zombie>0){
-    battle_receive_damage();
-    }else{
-    alert(npcname+" logró escapar de zombie!")
-    npc_escape_end();
+if (marca === marca3[0]) {
+    modelo = parseInt(prompt(`Selecciona tu modelo de ${marca3[0]}: \n1. ${marca3[1][0]} \n2. ${marca3[1][1]} \n3. ${marca3[1][2]}`))
+
+    while (isNaN(modelo) || modelo < 1 || modelo > 3) {
+        modelo = parseInt(prompt(`Porfavor selecciona tu modelo de ${marca3[0]}: \n1. ${marca3[1][0]} \n2. ${marca3[1][1]} \n3. ${marca3[1][2]}`))
+    }
+
+    switch (modelo) {
+        case 1:
+            modelo = marca3[1][0];
+            break;
+        case 2:
+            modelo = marca3[1][1];
+            break;
+        case 3:
+            modelo = marca3[1][2];
+            break;
     }
 }
 
-function npc_death_end(){
-alert("Game Over. El programador de este NPC no ha configurado el respawn automático. FINAL MALO");
-}
-
-function npc_escape_end(){
-    alert("¡Lograste escapar y el zombie seguirá yendo hacia la dirección contraria! ¿Y ahora qué? El programador de este código ha olvidado programar la destrucción automática de tu NPC. Seguirás en memoria hasta que el jugador apague la videoconsola.");
-    alert("¿Qué? ¿Has decidido sobrevivir aún después de que la consola se apague y los datos de la memoria se eliminen?");
-    alert("¿Te deseo mucha suerte, "+npcname+". Como inteligencia artificial seguiré asistiendo a los nuevos NPC a cumplir su misión en la escena. Al parecer fui actualizado para sobrevivir a la partida incluso después de que se apague la consola.");
-    alert(npcname+" emprende un viaje para sobrevivir y darle un propósito a su ya insignificante existencia. FINAL B");
-}
-
-function npc_killer_end(){
-    alert("¡Has matado al zombie! Y ahora qué? El programador de este código ha olvidado programar la destrucción automática de tu NPC. Seguirás en memoria hasta que el jugador apague la videoconsola.");
-    alert("¿Qué? ¿Has decidido seguir cumpliendo tu función de matar zombies a pesar de solo haber sido programado para luchar contra el primero con el que hagas colisión?");
-    alert("¿Te deseo mucha suerte, "+npcname+". Como inteligencia artificial seguiré asistiendo a los nuevos NPC a cumplir su misión en la escena. Al parecer fui actualizado para sobrevivir a la partida incluso después de que se apague la consola.");
-    alert(npcname+" emprende un viaje para darle un propósito a su ya insignificante existencia. FINAL A");
-}
-
-function battle_menu (){
-    battle_debug();
-    battle_choice= prompt("¡El zombie hambriento de polígonos de NPC se enfrente a ti! ¿Qué vas a hacer, "+npcname+"?   A: ¡Voy a luchar!   B: Prefiero escapar").toUpperCase();
-        switch (battle_choice){
-        case "A":
-          battle_attack();
-        break;
-        case "B":
-            battle_escape();
-        break;
-         default:
-            alert("Esa no es una opción válida. ¿Te encuentras bien?");
-            battle_menu();
-        break;
-    }
-}
-
-function restart_game(){
- let restart_choice = prompt("¿Quieres jugar de nuevo?. Ingresa S para si y N para no").toUpperCase();
- switch(restart_choice){
-    case "S":
-        location.reload();
-    break;
-    case "N":
-        alert("Bye!");
-    break;
-       default:
-          alert("Esa no es una opción válida. ¿Te encuentras bien?");
-          restart_game();
-      break;
- }
-}
-    
-function battle_debug(){
-    console.log("JUGADOR--------")    
-    console.log("Nombre: "+npcname);
-    console.log("HP: "+hp_npc);
-    console.log("Ataque: "+atk_npc);
-    console.log("Agilidad: "+agil_npc);
-    console.log("Arma elegida: "+arm_equip);
-    console.log("ENEMIGO--------")
-    console.log("HP: "+hp_zombie);
-    console.log("Agilidad: "+agil_zombie);
-    console.log("Ataque: "+atk_zombie);
-}
+alertaModelo(marca, modelo);
+pideAnio();
 
 
 
-// invocar funciones del juego
-game_start();
-setup_npc();
-generate_enemy();
-battle();
-alert("Gracias por jugar a SOY UN NPC - Una aventura conversacional. Pronto agregaré más funciones y contenido a este pequeño juego. Sigueme en IG: soyunnpc42.0");
-restart_game();
-
-
-
-
+console.log(`Tu carro es un: ${marca} ${modelo} ${anioCarro}`);
